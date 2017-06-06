@@ -1,9 +1,6 @@
 # unionfind
 An idiomatic implementation of a weighted Union Find data structure with path compression in go.
 
-## WIP
-Work in progress
-
 ## Install
 
 `$ go get github.com/theodesp/unionfind`
