@@ -39,6 +39,8 @@ Same as Find.
 #### `uf.Connected(p, q)`
 Checks if p and q are connected.
 
+## EXTRA
+There is also a goroutine safe version of unionfind in the file `safe-unionfind`.
 
 ## Licence
 MIT - Theo Despoudis

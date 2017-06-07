@@ -42,11 +42,11 @@ type UnionFind struct {
 
 // New returns an initialized list of Size N
 func New(N int) *UnionFind {
-	return new(UnionFind).Init(N)
+	return new(UnionFind).init(N)
 }
 
 // Constructor initializes root and size arrays
-func (uf *UnionFind) Init(N int) *UnionFind {
+func (uf *UnionFind) init(N int) *UnionFind {
 	uf = new(UnionFind)
 	uf.root = make([]int, N)
 	uf.size = make([]int, N)
