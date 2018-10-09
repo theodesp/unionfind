@@ -29,13 +29,13 @@ SOFTWARE.
 
 
 type threadSafeUnionFind struct {
-	uf *UnionFind
 	sync.RWMutex
+	uf *UnionFind
 }
 
-func newThreadSafeUnionFind(N int) threadSafeUnionFind {
+func newThreadSafeUnionFind(size int) threadSafeUnionFind {
 	safeUnionFind := threadSafeUnionFind{}
-	safeUnionFind.uf = New(N)
+	safeUnionFind.uf = New(size)
 
 	return safeUnionFind
 }

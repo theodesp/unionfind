@@ -40,18 +40,18 @@ type UnionFind struct {
 	size []int
 }
 
-// New returns an initialized list of Size N
-func New(N int) *UnionFind {
-	return new(UnionFind).init(N)
+// New returns an initialized list of size
+func New(size int) *UnionFind {
+	return new(UnionFind).init(size)
 }
 
 // Constructor initializes root and size arrays
-func (uf *UnionFind) init(N int) *UnionFind {
+func (uf *UnionFind) init(size int) *UnionFind {
 	uf = new(UnionFind)
-	uf.root = make([]int, N)
-	uf.size = make([]int, N)
+	uf.root = make([]int, size)
+	uf.size = make([]int, size)
 
-	for i := 0; i < N; i++ {
+	for i := 0; i < size; i++ {
 		uf.root[i] = i
 		uf.size[i] = 1
 	}
