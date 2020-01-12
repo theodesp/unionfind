@@ -28,19 +28,19 @@ SOFTWARE.
 // Thread safe version of Union-Find using plain locks.
 
 
-type threadSafeUnionFind struct {
+type ThreadSafeUnionFind struct {
 	sync.RWMutex
 	uf *UnionFind
 }
 
-func newThreadSafeUnionFind(size int) threadSafeUnionFind {
-	safeUnionFind := threadSafeUnionFind{}
+func NewThreadSafeUnionFind(size int) ThreadSafeUnionFind {
+	safeUnionFind := ThreadSafeUnionFind{}
 	safeUnionFind.uf = New(size)
 
 	return safeUnionFind
 }
 
-func (suf *threadSafeUnionFind) Union(p int, q int) {
+func (suf *ThreadSafeUnionFind) Union(p int, q int) {
 	suf.Lock()
 	defer suf.Unlock()
 
@@ -48,7 +48,7 @@ func (suf *threadSafeUnionFind) Union(p int, q int) {
 }
 
 
-func (suf *threadSafeUnionFind) Root(p int) int {
+func (suf *ThreadSafeUnionFind) Root(p int) int {
 	suf.Lock()
 	defer suf.Unlock()
 
@@ -56,12 +56,12 @@ func (suf *threadSafeUnionFind) Root(p int) int {
 }
 
 // Root or Find
-func (suf *threadSafeUnionFind) Find(p int) int {
+func (suf *ThreadSafeUnionFind) Find(p int) int {
 	return suf.Root(p)
 }
 
 // Unfortunately all the calls are coerced to writes thats why we use a Writer lock
-func (suf *threadSafeUnionFind) Connected(p int, q int) bool {
+func (suf *ThreadSafeUnionFind) Connected(p int, q int) bool {
 	suf.Lock()
 	defer suf.Lock()
 
