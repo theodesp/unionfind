@@ -16,14 +16,14 @@ func (s *MySuite) TestInitConcurrent(c *C) {
 	runtime.GOMAXPROCS(2)
 	ints := rand.Perm(N)
 
-	var tsuf threadSafeUnionFind
+	var tsuf ThreadSafeUnionFind
 
 	var wg sync.WaitGroup
 	wg.Add(len(ints))
 
 	for i := 0; i < len(ints); i++ {
 		go func(i int) {
-			tsuf = newThreadSafeUnionFind(N)
+			tsuf = NewThreadSafeUnionFind(N)
 			wg.Done()
 		}(i)
 	}
