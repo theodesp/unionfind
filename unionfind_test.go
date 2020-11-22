@@ -30,6 +30,7 @@ func (s *MySuite) TestRootEmpty(c *C) {
 
 	c.Assert(uf.Root(10), Equals, -1)
 	c.Assert(uf.Root(9), Equals, 9)
+	c.Assert(uf.Find(9), Equals, 9)
 	c.Assert(uf.Count(), Equals, 10)
 }
 
@@ -80,5 +81,6 @@ func (s *MySuite) TestUnionChecksSizes(c *C) {
 	uf.Union(2, 3)
 
 	c.Assert(uf.size, DeepEquals, []int{1, 4, 1, 1, 1})
+	c.Assert(uf.Connected(0, 3), Equals, true)
 	c.Assert(uf.Count(), Equals, 2)
 }
