@@ -36,8 +36,9 @@ SOFTWARE.
 
 //
 type UnionFind struct {
-	root []int
-	size []int
+	root  []int
+	size  []int
+	count int
 }
 
 // New returns an initialized list of size
@@ -50,6 +51,7 @@ func (uf *UnionFind) init(size int) *UnionFind {
 	uf = new(UnionFind)
 	uf.root = make([]int, size)
 	uf.size = make([]int, size)
+	uf.count = size
 
 	for i := 0; i < size; i++ {
 		uf.root[i] = i
@@ -61,9 +63,17 @@ func (uf *UnionFind) init(size int) *UnionFind {
 
 // Union connects p and q by finding their roots and comparing their respective
 // size arrays to keep the tree flat
+// Time complexity is amortized O(1)
 func (uf *UnionFind) Union(p int, q int) {
+	if p == q {
+		return
+	}
+
 	qRoot := uf.Root(q)
 	pRoot := uf.Root(p)
+	if qRoot == pRoot {
+		return
+	}
 
 	if uf.size[qRoot] < uf.size[pRoot] {
 		uf.root[qRoot] = uf.root[pRoot]
@@ -72,11 +82,14 @@ func (uf *UnionFind) Union(p int, q int) {
 		uf.root[pRoot] = uf.root[qRoot]
 		uf.size[qRoot] += uf.size[pRoot]
 	}
+
+	uf.count--
 }
 
 // Root or Find traverses each parent element while compressing the
 // levels to find the root element of p
 // If we attempt to access an element outside the array it returns -1
+// Time complexity is amortized O(1)
 func (uf *UnionFind) Root(p int) int {
 	if p > len(uf.root)-1 {
 		return -1
@@ -98,4 +111,10 @@ func (uf *UnionFind) Find(p int) int {
 // Check if items p,q are connected
 func (uf *UnionFind) Connected(p int, q int) bool {
 	return uf.Root(p) == uf.Root(q)
+}
+
+// Count returns the number of independent items
+// Time complexity is O(1)
+func (uf *UnionFind) Count() int {
+	return uf.count
 }

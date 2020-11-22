@@ -19,6 +19,7 @@ uf.Union(4, 6)
 fmt.PrintLn(uf.Find(2)) // Prints 1
 fmt.PrintLn(uf.Connected(1, 2)) // Prints true
 fmt.PrintLn(uf.Connected(1, 3)) // Prints false
+fmt.PrintLn(uf.Count()) // Prints 6
 
 ```
 
@@ -38,6 +39,9 @@ Same as Find.
 
 #### `uf.Connected(p, q)`
 Checks if p and q are connected.
+
+#### `uf.Count()`
+Returns the number of independent components.
 
 ## EXTRA
 There is also a goroutine safe version of unionfind in the file `safe-unionfind`.
