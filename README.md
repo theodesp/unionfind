@@ -18,7 +18,7 @@ uf.Union(4, 6)
 
 fmt.PrintLn(uf.Find(2)) // Prints 1
 fmt.PrintLn(uf.Connected(1, 2)) // Prints true
-fmt.PrintLn(uf.Connected(1, 3)) // Prints false
+fmt.PrintLn(uf.Connected(1, 3)) // Prints true
 
 ```
 
