@@ -64,3 +64,15 @@ func (s *MySuite) TestUnionChecksSizes(c *C) {
 
 	c.Assert(uf.size, DeepEquals, []int{1, 4, 1, 1, 1})
 }
+
+// Test Components
+func (s *MySuite) TestComponents(c *C) {
+	uf := New(10)
+
+	uf.Union(1, 2)
+	uf.Union(2, 3)
+	uf.Union(5, 6)
+	uf.Union(2, 8)
+
+	c.Assert(uf.Components(), Equals, 6)
+}
