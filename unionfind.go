@@ -66,10 +66,10 @@ func (uf *UnionFind) Union(p int, q int) {
 	pRoot := uf.Root(p)
 
 	if uf.size[qRoot] < uf.size[pRoot] {
-		uf.root[qRoot] = uf.root[pRoot]
+		uf.root[qRoot] = pRoot
 		uf.size[pRoot] += uf.size[qRoot]
 	} else {
-		uf.root[pRoot] = uf.root[qRoot]
+		uf.root[pRoot] = qRoot
 		uf.size[qRoot] += uf.size[pRoot]
 	}
 }
