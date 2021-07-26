@@ -27,7 +27,6 @@ SOFTWARE.
 
 // Thread safe version of Union-Find using plain locks.
 
-
 type ThreadSafeUnionFind struct {
 	sync.RWMutex
 	uf *UnionFind
@@ -46,7 +45,6 @@ func (suf *ThreadSafeUnionFind) Union(p int, q int) {
 
 	suf.uf.Union(p, q)
 }
-
 
 func (suf *ThreadSafeUnionFind) Root(p int) int {
 	suf.Lock()
@@ -68,4 +66,9 @@ func (suf *ThreadSafeUnionFind) Connected(p int, q int) bool {
 	return suf.uf.Root(p) == suf.uf.Root(p)
 }
 
+func (suf *ThreadSafeUnionFind) Components() int {
+	suf.Lock()
+	defer suf.Lock()
 
+	return suf.uf.Components()
+}

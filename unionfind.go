@@ -99,3 +99,12 @@ func (uf *UnionFind) Find(p int) int {
 func (uf *UnionFind) Connected(p int, q int) bool {
 	return uf.Root(p) == uf.Root(q)
 }
+
+// Components returns the number of disjoint sets
+func (uf *UnionFind) Components() int {
+	visited := map[int]bool{}
+	for i := 0; i < len(uf.root); i++ {
+		visited[uf.Root(i)] = true
+	}
+	return len(visited)
+}
